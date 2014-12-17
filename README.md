@@ -50,9 +50,9 @@ Conventions de programmation:
 ============================
 
 les commentaires sont en Français, les specs des fonctions sont dans les headers. Les noms de variables+fonctions sont en anglais hormi celles fixées par l'exercice: ex: lire_mot. 
-Il s'est avéré que l'utilisation en tant que méthode de lire_mot est plus judicieuse que en tant que fonction, j'ai donc pris la liberté de changer son prototype de char* lireMot(FILE*) en char* lire_mot, le fichier étant global à la classe.
+Il s'est avéré que l'utilisation en tant que méthode de lire\_mot est plus judicieuse que en tant que fonction, j'ai donc pris la liberté de changer son prototype de char * lireMot(FILE * ) en char * lire_mot, le fichier étant global à la classe.
 
-les noms de types et de variables sont en minuscules, les variables privées sont affixées de var_, les types par type_t.
+les noms de types et de variables sont en minuscules, les variables privées sont affixées de var_ , les types par type_t.
 
 
 Complexité:
@@ -63,11 +63,11 @@ avec n le nombre de mots dans le fichier, complexité moyenne
 
 Lecture: O(n)
 
-Tri: O(n*log(n))
+Tri: O(n * log(n))
 
 Affichage: O(n)
 
 Libération mémoire: O(n)
 
-Total: O(n*log(n))
+Total: O(n * log(n))
 
