@@ -7,15 +7,13 @@
 bool is_separator(const char c){
 	int i = 0;
 	
-	for (char cur_separator = separators[i];
-		i < SEPARATORS_COUNT && separators[i] != c;
-		i++, cur_separator = separators[i]);
+	for (;i < SEPARATORS_COUNT && separators[i] != c;i++);
 
 	return (i != SEPARATORS_COUNT);
 }
 
 char my_fgetc(FILE* A){
-	char c = fgetc(A);
+	char c = (char)fgetc(A);
 	if (ferror(A))
 		throw ERR_READ_FILE;
 
@@ -27,14 +25,14 @@ reader_t::reader_t(FILE *mon_fichier) :
 										chunk_size_(REASONABLE_CHUNK_SIZE),
 										cursor_(buf_),
 										word_count_(0),
-										mean_(0.),
 										M2_(0.),
+										mean_(0.),										
 										bytes_wasted_(0),
 										bytes_allocated_(0),
 										nb_reallocs_(0) {
 	//obtient la taille du fichier
 	fseek(mon_fichier_, 0, SEEK_END);
-	file_size_ = ftell(mon_fichier_);
+	file_size_ = (size_t)ftell(mon_fichier_);
 	fseek(mon_fichier_, 0, SEEK_SET);
 }
 
@@ -98,7 +96,7 @@ char *reader_t::lire_mot(){
 			chunk_size_ = realloc_size_heuristic(); //redimentionnement intelligent
 
 			delete[] buf_;
-			size_t offset = cursor_ - buf_;
+			size_t offset = (size_t)(cursor_ - buf_);
 			buf_ = new char[chunk_size_]; //récupération des données
 			cursor_ = buf_ + offset;
 			memcpy(buf_, buf_tmp, old_chunk_size);
@@ -111,14 +109,14 @@ char *reader_t::lire_mot(){
 	} 
 
 	if (!feof(mon_fichier_))
-		update_stats(cursor_ - buf_);
+		update_stats((size_t)(cursor_ - buf_));
 	
 	*cursor_ = '\0'; //terminons chaque mot par le caractere de fin
 	return buf_;	
 }
 
 size_t reader_t::len() const{
-	return cursor_ - buf_;
+	return (size_t)(cursor_ - buf_);
 }
 
 void reader_t::print_alloc_report() const{
@@ -136,25 +134,26 @@ void reader_t::print_alloc_report() const{
 char simplified(char _c) {
 	//simplification des caractères accentués
 	unsigned char c = (unsigned char)_c;
-	c = c == 0xFD || c == 0xFF || c == 0xDD || c==0x9F ? 'y' : c;
-	c = (c <= 0xFC && c >= 0xF9) || (c <= 0xDC && c >= 0xD9) ? 'u' : c;
-	c = c == 0x9C || c == 0x8C || c == 0xF8 || c == 0xD8 || c == 0xD0 || (c <= 0xF6 && c >= 0xF2) || (c <= 0xD6 && c >= 0xD2) ? 'o' : c;
-	c = c == 0xF1 || c == 0xD1 ? 'n' : c;
-	c = (c <= 0xEF && c >= 0xEC) || (c <= 0xCF && c >= 0xCC) ? 'i' : c;
-	c = (c <= 0xEB && c >= 0xE8) || (c <= 0xCB && c >= 0xC8) ? 'e' : c;
-	c = c == 0xE7 || c == 0xC7 ? 'c' : c;
-	c = c == 0x9E || c == 0x8E ? 'z' : c;
-	c = c == 0x9A || c == 0x8A ? 's' : c;
-	c = (c <= 0xE6 && c >= 0xE0) || (c <= 0xC6 && c >= 0xC0) ? 'a' : c;
-	c = c == 0xDF ? 's' : c;
-	if (c == 0xF6){
-		int h = 0;
-
-	}
+	c = (unsigned char)(c == 0xFD || c == 0xFF || c == 0xDD || c == 0x9F ? 'y' : c);
+	c = (unsigned char)(
+			(c <= 0xFC && c >= 0xF9) || (c <= 0xDC && c >= 0xD9) ? 'u' : c);
+	
+	c = (unsigned char)(
+		c == 0x9C || c == 0x8C || c == 0xF8 || c == 0xD8 || c == 0xD0 || (c <= 0xF6 && c >= 0xF2) || (c <= 0xD6 && c >= 0xD2) ? 'o' : c
+		);
+	c = (unsigned char)(c == 0xF1 || c == 0xD1 ? 'n' : c);
+	c = (unsigned char)((c <= 0xEF && c >= 0xEC) || (c <= 0xCF && c >= 0xCC) ? 'i' : c);
+	c = (unsigned char)((c <= 0xEB && c >= 0xE8) || (c <= 0xCB && c >= 0xC8) ? 'e' : c);
+	c = (unsigned char)(c == 0xE7 || c == 0xC7 ? 'c' : c);
+	c = (unsigned char)(c == 0x9E || c == 0x8E ? 'z' : c);
+	c = (unsigned char)(c == 0x9A || c == 0x8A ? 's' : c);
+	c = (unsigned char)((c <= 0xE6 && c >= 0xE0) || (c <= 0xC6 && c >= 0xC0) ? 'a' : c);
+	c = (unsigned char)(c == 0xDF ? 's' : c);
+	
 	//tout en lowercase pour une bonne comparaison par la suite
-	unsigned char c_lowercase = c>0x40 && c<0x5b ? c | 0x60 : c;
+	unsigned char c_lowercase = (unsigned char)(c>0x40 && c<0x5b ? c | 0x60 : c);
 		
-	return c_lowercase;
+	return (char)c_lowercase;
 }
 
 bool compare(node_t* node1, node_t* node2){	
