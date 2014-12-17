@@ -21,8 +21,8 @@ int main(int argc, char** argv){
 		else
 		  filename = const_cast<char*>(DEFAULT_FILE);
 		FILE *A = fopen(filename, "rb");
-		if (ferror(A))
-			throw ERR_OPEN_FILE;
+		if (!A)
+			throw ERR_FILE_NOT_FOUND;
 
 		reader_t reader(A);
 
