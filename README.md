@@ -1,8 +1,10 @@
-﻿mots
+﻿~mots
 ====
 
 Le programme prend un fichier en entrée sans supposer la longueur maximale de ce fichier ni de mots.
 Il "apprend" la distribution des mots au fur et à mesure que le fichier est lu ce qui permet une allocation optimale de la mémoire.
+A la fin, il produit un rapport listant des mots et les statistiques d'allocation mémoire.
+
 Le programme n'utilise pas la STL mais utilise certaines fonctions primitives des bibliotheques classiques C comme strcmp, memcpy dont le re-développement a peu d'intéret.
 
 !!NB!!: Il ne m'a pas paru clair de l'énoncé s'il faut lister les mots de façon distincte ou répétée lorsqu'il le sont.
@@ -26,6 +28,86 @@ make
 ```
 ./mots fichier.txt
 ```
+
+Sortie:
+=======
+
+En plus de lister les mots, le programme produit un rapport sur l'allocation (nombres d'allocs, pourcentage de memoire allouee mais non utilisée).
+Ce rapport permet de voir l'amélioration en performance par rapport à un autre type d'allocateur qui ne prend pas en compte la distribution des mots
+
+[...]
+Mots de 11 lettres
+917. accelerated
+918. accusations
+919. advertising
+920. bureaucracy
+921. competitive
+922. cybernetics
+923. destination
+924. differences
+925. engineering
+926. featureless
+927. Fortunately
+928. grandfather
+929. hitchhiking
+930. information
+931. integration
+932. invitations
+933. Kyrgyzstani
+934. lawlessness
+935. nationality
+936. opportunity
+937. perspective
+938. preparatory
+939. prostitutes
+940. resurfacing
+941. theoretical
+942. underground
+943. Yugoslavian
+
+Mots de 12 lettres
+944. bridenapping
+945. consequences
+946. counterparts
+947. crowdfunding
+948. deliberation
+949. destinations
+950. increasingly
+951. independence
+952. intelligence
+953. Kyrgyzstan▒s
+954. neighbouring
+955. never-ending
+956. prostitution
+957. questionable
+958. relationship
+959. similarities
+
+Mots de 13 lettres
+960. demonstrating
+961. International
+962. international
+963. revolutionary
+964. traditionally
+965. understanding
+966. unfortunately
+967. Unfortunately
+
+Mots de 14 lettres
+968. post-communism
+969. post-communist
+
+Mots de 15 lettres
+970. representatives
+
+Mots de 21 lettres
+971. counter-revolutionary
+bytes allocated: 16791
+bytes wasted (unnecessary allocation) 5091
+ % wasted:                 30.319814
+number of reallocations:1874
+
+
 Tri des mots:
 =============
 

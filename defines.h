@@ -6,7 +6,7 @@
 
 #define DEFAULT_FILE "test.txt" //Nom du fichier à lire
 #define REASONABLE_CHUNK_SIZE 6		//C'est la taille du buffer par défaut avant que le système aie suffisemment d'information pour allouer intelligemment
-#define SEPARATORS_COUNT 12			//Nombre de caractères listés comme séparateurs possibles dans le tableau separators
+#define SEPARATORS_COUNT 13			//Nombre de caractères listés comme séparateurs possibles dans le tableau separators
 #define MIN_REALLOCATION_SIZE 1		//à chaque réalocation, la taille du buffer doit etre augmentée au minimum de MIN_REALLOCATION_SIZE
 
 #include <stdlib.h> //pour size_t
