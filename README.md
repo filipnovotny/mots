@@ -10,6 +10,11 @@ Par exemple, le fichier "test test" doit il lister 1. test 2. test ou juste 1. t
 Une macro a étée définie: HIDE_REPEATED_WORDS. Si activée (par défaut), un mot répété ne va etre listé 1 fois (tout en restant sensible à la case)
 Si elle est désactivée, le mot sera listé autant de fois qu'il apparait.
 
+Plateformes:
+===========
+Testé sous Windows VS2013 ainsi que linux ubuntu 14+valgrind.
+Aucune fuite de mémoire détectée lors des tests.
+
 Utilisation:
 ===========
 
