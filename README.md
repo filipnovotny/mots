@@ -17,14 +17,15 @@ Aucune fuite de mémoire détectée lors des tests.
 
 Utilisation:
 ===========
-
+```
 ./mots fichier.txt
-
+```
 Sous windows/VC++, il suffit de charger les fichiers dans un projet vide et le lancer avec comme argument le fichier à analyser
 Sous linux:
 make
+```
 ./mots fichier.txt
-
+```
 Tri des mots:
 =============
 
@@ -59,8 +60,14 @@ Complexité:
 
 L'accent a été mis sur l'économie de la mémoire tout en minimisant la complexité autant que possible étant donné la 1ere contrainte.
 avec n le nombre de mots dans le fichier, complexité moyenne
+
 Lecture: O(n)
+
 Tri: O(n*log(n))
+
 Affichage: O(n)
+
 Libération mémoire: O(n)
+
 Total: O(n*log(n))
+
