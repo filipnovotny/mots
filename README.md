@@ -102,11 +102,12 @@ Mots de 15 lettres
 
 Mots de 21 lettres
 971. counter-revolutionary
+```
 bytes allocated: 16791
 bytes wasted (unnecessary allocation) 5091
  % wasted:                 30.319814
 number of reallocations:1874
-
+```
 
 Tri des mots:
 =============
