@@ -19,7 +19,7 @@ int main(int argc, char** argv){
 		if (argc > 1)
 			filename = argv[1];
 		else
-			filename = DEFAULT_FILE;
+		  filename = const_cast<char*>(DEFAULT_FILE);
 		FILE *A = fopen(filename, "rb");
 		if (ferror(A))
 			throw ERR_OPEN_FILE;
@@ -68,7 +68,7 @@ int main(int argc, char** argv){
 		int i = 0;
 		for (cur = first; cur != last; cur = cur->next) {
 			if (len != cur->len){
-				printf("\nMots de %d lettres\n", cur->len);
+				printf("\nMots de %lu lettres\n", cur->len);
 				len = cur->len;
 			}
 #ifdef HIDE_REPEATED_WORDS
@@ -88,7 +88,7 @@ int main(int argc, char** argv){
 		*/
 		for (cur = first; cur; cur = cur_next) {
 			cur_next = cur->next;
-			delete cur->word;
+			delete[] cur->word;
 			delete cur;
 		}
 		reader.print_alloc_report();

@@ -1,4 +1,4 @@
 #include "defines.h"
 
-char separators[] = " \n,;.:\r\\/'!?";
-char* errors[] = { "File not found", "Error reading file" };
+const char separators[] = " \n,;.:\r\\/'!?";
+const char* errors[] = { "File not found", "Error reading file" };

@@ -1,6 +1,9 @@
 #ifndef __HELPERS_H__
 #define __HELPERS_H__
 
+#include <stdio.h>
+#include <stdlib.h>
+
 /*
 Détermine si le caractère est un séparateur ou non (ex espace, retour à la ligne, etc.)
 c : caractère à tester

@@ -11,7 +11,7 @@
 
 #include <stdlib.h> //pour size_t
 
-extern char separators[];			//liste de séparateurs
+extern const char separators[];			//liste de séparateurs
 
 /////////////////////////////////////////////////////
 ////////////////////// ERRORS ///////////////////////
@@ -22,6 +22,6 @@ extern char separators[];			//liste de séparateurs
 #define ERR_OPEN_FILE		2
 
 
-extern char* errors[];
+extern const char* errors[];
 
 #endif

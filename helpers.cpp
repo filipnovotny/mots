@@ -97,12 +97,12 @@ char *reader_t::lire_mot(){
 			memcpy(buf_tmp, buf_, old_chunk_size); //sauvegarde
 			chunk_size_ = realloc_size_heuristic(); //redimentionnement intelligent
 
-			delete buf_;
+			delete[] buf_;
 			size_t offset = cursor_ - buf_;
 			buf_ = new char[chunk_size_]; //récupération des données
 			cursor_ = buf_ + offset;
 			memcpy(buf_, buf_tmp, old_chunk_size);
-			delete buf_tmp;
+			delete[] buf_tmp;
 
 			nb_reallocs_++;
 		}
@@ -122,9 +122,9 @@ size_t reader_t::len() const{
 }
 
 void reader_t::print_alloc_report() const{
-	printf("bytes allocated: %d\nbytes wasted (unnecessary allocation) %d\n% % wasted: \
-		   %lf\nnumber of reallocations:%d\n\n\n \
-		   mean size of word:%fl\n",		   
+	printf("bytes allocated: %lu\nbytes wasted (unnecessary allocation) %lu\n %% wasted: \
+		   %lf\nnumber of reallocations:%lu\n\n\n \
+		   mean size of word: %fl\n",		   
 		bytes_allocated_,
 		bytes_wasted_,
 		(double)bytes_wasted_ * 100. / (double)bytes_allocated_,
